@@ -9,7 +9,7 @@ curl -X POST -H 'X-FIGMA-TOKEN: YOUR_FIGMA_TOKEN' -H "Content-Type: application/
 
 Local dev with wrangler
 
-### 1. Add file_key / discord webhook pairs to config.js
+### 1. Add file_key / Discord webhook pairs to the map in config.js
 
 Move the sample config and update it with your key/value pairs
 
@@ -23,7 +23,6 @@ Add your Figma Webhook passcode
 
 ```
 wrangler secret put FIGMA_PASSCODE
-
 ```
 
 ### 3. Run Locally
