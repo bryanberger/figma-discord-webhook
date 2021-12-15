@@ -1,3 +1,10 @@
+## Setup Figma Webhook
+
+Replace the variables with real ones
+```
+curl -X POST -H 'X-FIGMA-TOKEN: YOUR_FIGMA_TOKEN' -H "Content-Type: application/json" 'https://api.figma.com/v2/webhooks' -d '{"event_type":"LIBRARY_PUBLISH","team_id":"YOUR_TEAM_ID","endpoint":"YOUR_ENDPOINT_URL","passcode":"YOUR_PASSCODE","description":"Design System Library Publish Events"}'
+```
+
 ## Development
 
 Local dev with wrangler
