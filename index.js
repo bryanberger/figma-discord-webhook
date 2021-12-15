@@ -81,6 +81,7 @@ const notify = async body => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(params),
         })
+        console.log(`Sent notification to Discord for ${file_name}:${file_key}`)
     } catch (err) {
         console.log(err.message)
     }
@@ -94,8 +95,6 @@ router.post('/', async request => {
         config[body.file_key]
     ) {
         await notify(body)
-        console.log('made it thru')
-
         return new Response('success', { status: 200 })
     } else {
         return new Response('Not Authenticated', { status: 401 })
