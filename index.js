@@ -29,32 +29,32 @@ const notify = async body => {
 
     if (created_components.length > 0)
         fields.push({
-            name: 'Added Components',
+            name: '✅ Added Components',
             value: formatField(created_components),
         })
     if (created_styles.length > 0)
         fields.push({
-            name: 'Added Styles',
+            name: '✅ Added Styles',
             value: formatField(created_styles),
         })
     if (modified_components.length > 0)
         fields.push({
-            name: 'Modified Components',
+            name: '✏️ Modified Components',
             value: formatField(modified_components),
         })
     if (modified_styles.length > 0)
         fields.push({
-            name: 'Modified Styles',
+            name: '✏️ Modified Styles',
             value: formatField(modified_styles),
         })
     if (deleted_components.length > 0)
         fields.push({
-            name: 'Deleted Components',
+            name: '❌ Deleted Components',
             value: formatField(deleted_components),
         })
     if (deleted_styles.length > 0)
         fields.push({
-            name: 'Deleted Styles',
+            name: '❌ Deleted Styles',
             value: formatField(deleted_styles),
             inline: true,
         })
