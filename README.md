@@ -2,14 +2,16 @@
 
 Cloudflare Worker listening to `LIBRARY_UPDATE` events from Figma and relays them to Discord.
 
-A webhook is send to this worker as soon as one of the Figma libraries listed in `config.js` is published.
-If the correct payload is received, and validated (proper passcode, event, and file_key) then a Discord webhook message is crafted and sent to the webhook url of your choice (per file_key).
+A webhook is sent to this worker as soon as one of the Figma libraries listed in `config.js` is published.
+If the correct payload is received, and validated (proper passcode, event, and file_key) then a Discord message is crafted and sent to the webhook url of your choice (per file_key).
 
 ![demo](.github/demo.png?raw=true)
 
 ## Setup Figma Webhook
 
-Replace the variables with real ones
+To add this webhook you must have `Admin` permissions over the team in which the file you want to track lives. Replace the variables below with real ones and send the curl request.
+
+**Note:** You must be listed as a team admin even if you have Organization admin permissions ([see here](https://forum.figma.com/t/403-access-denied-trying-to-use-the-webhook-api/7638)).
 
 ```
 curl -X POST -H 'X-FIGMA-TOKEN: YOUR_FIGMA_TOKEN' -H "Content-Type: application/json" 'https://api.figma.com/v2/webhooks' -d '{"event_type":"LIBRARY_PUBLISH","team_id":"YOUR_TEAM_ID","endpoint":"YOUR_ENDPOINT_URL","passcode":"YOUR_PASSCODE","description":"Design System Library Publish Events"}'
