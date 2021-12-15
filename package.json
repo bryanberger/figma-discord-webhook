@@ -9,7 +9,7 @@
         "format": "prettier --write '**/*.{js,css,json,md}'"
     },
     "author": "Bryan Berger <bryan@bryanberger.com>",
-    "license": "ISC",
+    "license": "MIT",
     "devDependencies": {
         "prettier": "^1.17.0"
     },
