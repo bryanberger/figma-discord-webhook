@@ -1,0 +1,11 @@
+name = "figma-discord-webhook"
+type = "webpack"
+
+account_id = "fd0a782f3c3fee3f9a959026e64400cb"
+workers_dev = true
+route = ""
+zone_id = ""
+compatibility_date = "2021-12-14"
+
+# [secrets]
+# FIGMA_PASSCODE
