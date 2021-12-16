@@ -5,7 +5,7 @@ export const withPasscodeAndFileKey = async request => {
         return new Response('Invalid Request', { status: 401 })
     }
 
-    const { passcode, file_key } = data
+    const { passcode, file_key, event_type } = data
 
     if (passcode !== FIGMA_PASSCODE) {
         return new Response('Invalid Passcode', { status: 401 })
@@ -13,6 +13,10 @@ export const withPasscodeAndFileKey = async request => {
 
     if (file_key === null) {
         return new Response('Invalid File Key', { status: 401 })
+    }
+
+    if (event_type === null) {
+        return new Response('Missing Event Type', { status: 401 })
     }
 
     const webhookUrl = await FIGMA_DISCORD_WEBHOOK.get(file_key)
