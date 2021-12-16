@@ -7,8 +7,6 @@ export const withPasscodeAndFileKey = async request => {
 
     const { passcode, file_key, event_type } = data
 
-    console.log(event_type)
-
     if (passcode !== FIGMA_PASSCODE) {
         return new Response('Invalid Passcode', { status: 401 })
     }
