@@ -2,9 +2,9 @@
 
 > **Note**: `LIBRARY_UPDATE` events from Figma seem bugged (webhooks are beta btw), they stream in 1 after the other, and would require some batch request handling to limit the amount of noise sent to Discord — for now they are just relayed through.
 
-Cloudflare Worker listening to `LIBRARY_UPDATE` and `FILE_VERSION_UPDATE` events from Figma and relays them to Discord.
+Cloudflare Worker listening to `LIBRARY_UPDATE` and `FILE_VERSION_UPDATE` events from Figma and sends them to a Discord channel webhook.
 
-A webhook is sent to this worker as soon as one of the Figma libraries listed in `config.js` is published.
+A webhook is sent to this worker as soon as one of the Figma libraries listed in the KV is published.
 If the correct payload is received, and validated (proper passcode, event, and file_key) then a Discord message is crafted and sent to the webhook url of your choice (per file_key).
 
 ![demo](.github/demo.png?raw=true)
