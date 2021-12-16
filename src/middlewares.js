@@ -7,15 +7,17 @@ export const withPasscodeAndFileKey = async request => {
 
     const { passcode, file_key, event_type } = data
 
+    console.log(event_type)
+
     if (passcode !== FIGMA_PASSCODE) {
         return new Response('Invalid Passcode', { status: 401 })
     }
 
-    if (file_key === null) {
-        return new Response('Invalid File Key', { status: 401 })
+    if (file_key === undefined) {
+        return new Response('Missing File Key', { status: 401 })
     }
 
-    if (event_type === null) {
+    if (event_type === undefined) {
         return new Response('Missing Event Type', { status: 401 })
     }
 
