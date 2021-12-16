@@ -1,43 +1,33 @@
 import { Router } from 'itty-router'
+
+import { withPasscodeAndFileKey } from './middlewares'
 import { sendFileVersionUpdate, sendLibraryUpdate } from './notifications'
 
 const router = Router()
 
-router.post('/file_version_update', async request => {
-    const body = await request.json()
-    const webhookUrl = await FIGMA_DISCORD_WEBHOOK.get(body.file_key)
-
-    if (webhookUrl === null) {
-        return new Response('Not Found', { status: 404 })
+router.post(
+    '/file_version_update',
+    withPasscodeAndFileKey,
+    async ({ data, webhookUrl }) => {
+        if (data.event_type === 'FILE_VERSION_UPDATE') {
+            return await sendFileVersionUpdate(data, webhookUrl)
+        } else {
+            return new Response('Invalid Event Type', { status: 401 })
+        }
     }
+)
 
-    if (
-        body.passcode === FIGMA_PASSCODE &&
-        body.event_type === 'FILE_VERSION_UPDATE'
-    ) {
-        return await sendFileVersionUpdate(body, webhookUrl)
-    } else {
-        return new Response('Bad Request', { status: 400 })
+router.post(
+    '/library_publish',
+    withPasscodeAndFileKey,
+    async ({ data, webhookUrl }) => {
+        if (data.event_type === 'LIBRARY_PUBLISH') {
+            return await sendLibraryUpdate(data, webhookUrl)
+        } else {
+            return new Response('Invalid Event Type', { status: 401 })
+        }
     }
-})
-
-router.post('/library_publish', async request => {
-    const body = await request.json()
-    const webhookUrl = await FIGMA_DISCORD_WEBHOOK.get(body.file_key)
-
-    if (webhookUrl === null) {
-        return new Response('Not Found', { status: 404 })
-    }
-
-    if (
-        body.passcode === FIGMA_PASSCODE &&
-        body.event_type === 'LIBRARY_PUBLISH'
-    ) {
-        return await sendLibraryUpdate(body, webhookUrl)
-    } else {
-        return new Response('Bad Request', { status: 400 })
-    }
-})
+)
 
 router.all('*', () => new Response('Not Found', { status: 404 }))
 

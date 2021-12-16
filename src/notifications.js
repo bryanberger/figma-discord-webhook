@@ -1,6 +1,6 @@
 import { formatStringFor } from './utils'
 
-export const sendFileVersionUpdate = async (body, webhookUrl) => {
+export const sendFileVersionUpdate = async (data, webhookUrl) => {
     try {
         const {
             description,
@@ -10,7 +10,7 @@ export const sendFileVersionUpdate = async (body, webhookUrl) => {
             triggered_by,
             timestamp,
             version_id,
-        } = body
+        } = data
 
         const username = (triggered_by && triggered_by.handle) || 'Someone'
         const file_url = `https://figma.com/file/${file_key}/`
@@ -38,7 +38,7 @@ export const sendFileVersionUpdate = async (body, webhookUrl) => {
     }
 }
 
-export const sendLibraryUpdate = async (body, webhookUrl) => {
+export const sendLibraryUpdate = async (data, webhookUrl) => {
     try {
         const {
             description,
@@ -52,7 +52,7 @@ export const sendLibraryUpdate = async (body, webhookUrl) => {
             modified_styles,
             deleted_components,
             deleted_styles,
-        } = body
+        } = data
 
         const username = (triggered_by && triggered_by.handle) || 'Someone'
         const file_url = `https://figma.com/file/${file_key}/`
