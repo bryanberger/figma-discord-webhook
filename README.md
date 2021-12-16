@@ -13,20 +13,35 @@ To add this webhook you must have `Admin` permissions over the team in which the
 
 **Note:** You must be listed as a team admin even if you have Organization admin permissions ([see here](https://forum.figma.com/t/403-access-denied-trying-to-use-the-webhook-api/7638)).
 
+### Add Webhook
+
 ```
-curl -X POST -H 'X-FIGMA-TOKEN: YOUR_FIGMA_TOKEN' -H "Content-Type: application/json" 'https://api.figma.com/v2/webhooks' -d '{"event_type":"LIBRARY_PUBLISH","team_id":"YOUR_TEAM_ID","endpoint":"YOUR_ENDPOINT_URL","passcode":"YOUR_PASSCODE","description":"Design System Library Publish Events"}'
+curl -X POST -H 'X-FIGMA-TOKEN: <personal access token>' -H "Content-Type: application/json" 'https://api.figma.com/v2/webhooks' -d '{"event_type":"LIBRARY_PUBLISH","team_id":"YOUR_TEAM_ID","endpoint":"YOUR_ENDPOINT_URL","passcode":"YOUR_PASSCODE","description":"Design System Library Publish Events"}'
+```
+
+### Get All Webhooks for team
+
+```
+curl -H 'X-FIGMA-TOKEN: <personal access token>' 'https://api.figma.com/v2/teams/:team_id/webhooks'
+```
+
+### Delete Webhook
+
+```
+curl -X DELETE -H 'X-FIGMA-TOKEN: <personal access token>' 'https://api.figma.com/v2/webhooks/:webhook_id'
 ```
 
 ## Development
 
 Local dev with wrangler
 
-### 1. Add file_key / Discord webhook pairs to the map in config.js
+### 1. Add the KV namespace `FIGMA_DISCORD_WEBHOOK` via wrangler
 
-Move the sample config and update it with your key/value pairs
+Add file_key / Discord webhook key-value pairs to it via the web UI or via wrangler
 
 ```
-mv config.sample.js config.js
+wrangler kv:namespace create --preview "FIGMA_DISCORD_WEBHOOK"
+wrangler kv:key put --binding="FIGMA_DISCORD_WEBHOOK" "FILE_KEY_HERE" "FULL_DISCORD_WEBHOOK_URL_HERE"
 ```
 
 ### 2. Add Secrets

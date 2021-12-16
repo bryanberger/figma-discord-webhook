@@ -7,5 +7,9 @@ route = ""
 zone_id = ""
 compatibility_date = "2021-12-14"
 
+kv_namespaces = [
+     { binding = "FIGMA_DISCORD_WEBHOOK", preview_id = "1d0ad2e6b16844068351da1db316b13f", id = "0fe14d6a2cf542bc8a52ac1072f69670" }
+]
+
 # [secrets]
 # FIGMA_PASSCODE
