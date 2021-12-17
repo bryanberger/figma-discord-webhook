@@ -25,7 +25,7 @@ export const sendFileVersionUpdate = async (data, webhookUrl) => {
                     url: file_url,
                     fields: fields,
                     footer: {
-                        text: `Published by: ${username} • v${version_id}`,
+                        text: `Published by: ${username}  •  v${version_id}`,
                     },
                 },
             ],
