@@ -1,3 +1,4 @@
+[![Deploy](https://github.com/bryanberger/figma-discord-webhook/actions/workflows/deploy.yml/badge.svg)](https://github.com/bryanberger/figma-discord-webhook/actions/workflows/deploy.yml)
 ## Overview
 
 > **Note**: `LIBRARY_UPDATE` events from Figma seem bugged (webhooks are beta btw), they stream in 1 after the other, and would require some batch request handling to limit the amount of noise sent to Discord — for now they are just relayed through.
