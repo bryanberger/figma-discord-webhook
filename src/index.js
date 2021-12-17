@@ -1,13 +1,13 @@
 import { Router } from 'itty-router'
 
-import { withPasscodeAndFileKey } from './middlewares'
+import { withValidate } from './middlewares'
 import { sendFileVersionUpdate, sendLibraryUpdate } from './notifications'
 
 const router = Router()
 
 router.post(
     '/file_version_update',
-    withPasscodeAndFileKey,
+    withValidate,
     async ({ data, webhookUrl }) => {
         if (data.event_type === 'FILE_VERSION_UPDATE') {
             return await sendFileVersionUpdate(data, webhookUrl)
@@ -19,7 +19,7 @@ router.post(
 
 router.post(
     '/library_publish',
-    withPasscodeAndFileKey,
+    withValidate,
     async ({ data, webhookUrl }) => {
         if (data.event_type === 'LIBRARY_PUBLISH') {
             return await sendLibraryUpdate(data, webhookUrl)

@@ -1,11 +1,11 @@
-export const withPasscodeAndFileKey = async request => {
+export const withValidate = async request => {
     const data = await request.json()
 
     if (data === null) {
         return new Response('Invalid Request', { status: 401 })
     }
 
-    const { passcode, file_key, event_type } = data
+    const { passcode, file_key, event_type, description } = data
 
     if (passcode !== FIGMA_PASSCODE) {
         return new Response('Invalid Passcode', { status: 401 })
@@ -17,6 +17,16 @@ export const withPasscodeAndFileKey = async request => {
 
     if (event_type === undefined) {
         return new Response('Missing Event Type', { status: 401 })
+    }
+
+    if (
+        description &&
+        description
+            .toString()
+            .toLowerCase()
+            .includes('#exclude')
+    ) {
+        return new Response('Ignoring Excluded Update', { status: 200 })
     }
 
     const webhookUrl = await FIGMA_DISCORD_WEBHOOK.get(file_key)

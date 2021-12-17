@@ -7,6 +7,8 @@ Cloudflare Worker listening to `LIBRARY_UPDATE` and `FILE_VERSION_UPDATE` events
 A webhook request is sent to this worker as soon as one of the Figma files listed in the KV is published.
 If the correct payload is received, and validated (proper passcode, event, and file_key) then a Discord message is crafted and sent to the webhook url of your choice (per file_key).
 
+> **Note**: Don't want an event to be sent to Discord? In Figma include `#exclude` in your commit description and it will be ignored.
+
 ![demo](.github/demo.png?raw=true)
 
 ## Setup Figma Webhook
