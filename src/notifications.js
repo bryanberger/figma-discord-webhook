@@ -14,7 +14,7 @@ export const sendFileVersionUpdate = async (data, webhookUrl) => {
 
         const username = (triggered_by && triggered_by.handle) || 'Someone'
         const file_url = `https://figma.com/file/${file_key}/`
-        const fields = [{ name: `✅ ${label}`, value: description || 'No description' }]
+        const fields = [{ name: `✅ ${label || 'No label'}`, value: description || 'No description' }]
 
         const params = {
             embeds: [
