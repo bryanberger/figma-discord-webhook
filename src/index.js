@@ -17,17 +17,13 @@ router.post(
     }
 )
 
-router.post(
-    '/library_publish',
-    withValidate,
-    async ({ data, webhookUrl }) => {
-        if (data.event_type === 'LIBRARY_PUBLISH') {
-            return await sendLibraryUpdate(data, webhookUrl)
-        } else {
-            return new Response('Invalid Event Type', { status: 401 })
-        }
+router.post('/library_publish', withValidate, async ({ data, webhookUrl }) => {
+    if (data.event_type === 'LIBRARY_PUBLISH') {
+        return await sendLibraryUpdate(data, webhookUrl)
+    } else {
+        return new Response('Invalid Event Type', { status: 401 })
     }
-)
+})
 
 router.all('*', () => new Response('Not Found', { status: 404 }))
 

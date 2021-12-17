@@ -14,12 +14,17 @@ export const sendFileVersionUpdate = async (data, webhookUrl) => {
 
         const username = (triggered_by && triggered_by.handle) || 'Someone'
         const file_url = `https://figma.com/file/${file_key}/`
-        const fields = [{ name: `✅ ${label || 'No label'}`, value: description || 'No description' }]
+        const fields = [
+            {
+                name: `🚀 ${label || 'No label'}`,
+                value: description || 'No description',
+            },
+        ]
 
         const params = {
             embeds: [
                 {
-                    title: `__${file_name}__ was just published!`,
+                    title: file_name,
                     color: 5039945, // A green color
                     timestamp: timestamp,
                     url: file_url,
